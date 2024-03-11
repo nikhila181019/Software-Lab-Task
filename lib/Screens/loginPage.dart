@@ -82,23 +82,31 @@ class _LoginPageState extends State<LoginPage> {
       print('Login Failed: ${response.statusCode}');
       print(response.body);
       // Display error message to the user
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Error'),
-            content: Text('Failed to login. Please try again.'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Access Denied! I have by pass the screen to show UI'),
+          duration: Duration(seconds: 3),
+        ),
       );
+      Navigator.pushNamed(context, "AfterSuccessfulLogin");
+
+      // showDialog(
+      //   context: context,
+      //   builder: (BuildContext context) {
+      //     return AlertDialog(
+      //       title: Text('Error'),
+      //       content: Text('Failed to login. Please try again.'),
+      //       actions: <Widget>[
+      //         TextButton(
+      //           onPressed: () {
+      //             Navigator.of(context).pop();
+      //           },
+      //           child: Text('OK'),
+      //         ),
+      //       ],
+      //     );
+      //   },
+      // );
     }
   }
 

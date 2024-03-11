@@ -46,6 +46,14 @@ class _BusinessHoursState extends State<BusinessHours> {
     } else {
       // Registration failed
       print('Registration failed');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Acccess Denied! I have by pass the screen to show UI'),
+          duration: Duration(seconds: 3),
+        ),
+
+      );
+      Navigator.pushNamed(context, "fromBusinessHours");
     }
   }
   List<String> selectedDays = [];

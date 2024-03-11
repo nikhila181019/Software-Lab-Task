@@ -20,19 +20,20 @@ class ForgotPassword extends StatelessWidget {
         Navigator.pushNamed(context, "fromForgotPassword");
       } else {
         // Handle failure cases
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text('Error'),
-            content: Text(responseData['message']),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text('OK'),
-              ),
-            ],
+        Navigator.pushNamed(context, "fromForgotPassword");
+         showDialog(
+           context: context,
+           builder: (context) => AlertDialog(
+             title: Text('Error'),
+             content: Text(responseData['message']),
+             actions: [
+               TextButton(
+                 onPressed: () => Navigator.pop(context),
+                 child: Text('OK'),
+               ),
+             ],
           ),
-        );
+         );
       }
     } else {
       // Handle other status codes
@@ -149,20 +150,25 @@ class ForgotPassword extends StatelessWidget {
                 _sendOTP(context, phoneNumber);
                // Navigator.pushNamed(context, "fromForgotPassword");
               },
-              child: Container(
-                height: 65,
-                width: 350,
-                decoration: BoxDecoration(
-                    color: Colors.orange[300],
-                    borderRadius: BorderRadius.circular(100)),
-                child: Center(
-                    child: Text(
-                      "Send Code",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 15,
-                          color: Colors.white),
-                    )),
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.pushNamed(context, "fromForgotPassword");
+                },
+                child: Container(
+                  height: 65,
+                  width: 350,
+                  decoration: BoxDecoration(
+                      color: Colors.orange[300],
+                      borderRadius: BorderRadius.circular(100)),
+                  child: Center(
+                      child: Text(
+                        "Send Code",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 15,
+                            color: Colors.white),
+                      )),
+                ),
               ),
             ),
           ],

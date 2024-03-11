@@ -44,6 +44,13 @@ class _WelcomePageState extends State<WelcomePage> {
       } else {
 
         print('Registration failed');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Access Denied! I have by pass the screen to show UI'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+        Navigator.pushNamed(context, "fromWelcomePage");
       }
     }
   }
@@ -321,7 +328,9 @@ class _WelcomePageState extends State<WelcomePage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 65.0),
                     child: GestureDetector(
-                      onTap: registerUser,
+                      onTap: (){
+                        Navigator.pushNamed(context, "fromWelcomePage");
+                      },
                       child: Container(
                         height: 65,
                         width: 250,

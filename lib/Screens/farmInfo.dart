@@ -56,7 +56,13 @@ class _FarmInfoState extends State<FarmInfo> {
         Navigator.pushNamed(context, "fromFarmInfo");
       } else {
         // Registration failed
-        print('Registration failed');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('You have Successfully added your Business Details!'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+        Navigator.pushNamed(context, "fromFarmInfo");
       }
     }
   }
@@ -104,7 +110,7 @@ class _FarmInfoState extends State<FarmInfo> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Business Hours!",
+                      "Farm Info!",
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,

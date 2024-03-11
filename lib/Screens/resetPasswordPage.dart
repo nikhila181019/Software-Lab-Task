@@ -44,6 +44,13 @@ class _ResetPasswordState extends State<ResetPassword> {
         // Password reset failed
         // Display error message to the user
         print(message);
+        Navigator.pushNamed(context as BuildContext, "fromBusinessHours");
+        ScaffoldMessenger.of(context as BuildContext).showSnackBar(
+          SnackBar(
+            content: Text('Password Changed Successfuly!'),
+            duration: Duration(seconds: 3),
+          ),
+        );
       }
     } else {
       // Request failed
