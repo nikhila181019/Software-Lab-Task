@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:software_lab_task/Screens/businessHoursPage.dart';
 import 'package:software_lab_task/Screens/farmInfo.dart';
@@ -10,9 +11,11 @@ import 'package:software_lab_task/Screens/verifyOtpPage.dart';
 import 'Screens/boardingPage.dart';
 import 'Screens/welcomePage.dart';
 
-  void main(){
-    runApp(MyApp());
-  }
+Future main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
   class MyApp extends StatelessWidget {
     const MyApp({super.key});
