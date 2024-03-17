@@ -1,5 +1,9 @@
 import 'dart:convert';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../Services/appleAuth.dart';
+import '../Services/facebookAuth.dart';
+import '../Services/googleAuth.dart';
 import '../Services/registerApiService.dart';
 import 'package:http/http.dart' as http;
 
@@ -116,36 +120,76 @@ class _WelcomePageState extends State<WelcomePage> {
                     height: 150,
                   ),
                   SizedBox(width: 40),
-                  Container(
-                    height: 70,
-                    width: 90,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/Icons/GoogleIcon.png")),
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(50),
+                  GestureDetector(
+                    onTap: () async {
+                      try {
+                        final UserCredential userCredential = await  signInWithGoogle();
+                        final User? user = userCredential.user;
+                        print('Signed in as: ${user!.displayName}');
+                        // Navigate to the next screen after successful authentication
+                      } catch (e) {
+                        print('Failed to sign in with Google: $e');
+                        // Handle errors
+                      }
+                    },
+                    child: Container(
+                      height: 70,
+                      width: 90,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/Icons/GoogleIcon.png")),
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
                     ),
                   ),
                   SizedBox(width: 30),
-                  Container(
-                    height: 70,
-                    width: 90,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/Icons/AppleIcon.png")),
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(50),
+                  GestureDetector(
+                    onTap: ()async {
+                      try {
+                        final UserCredential userCredential = await signInWithApple();
+                        final User? user = userCredential.user;
+                        print('Signed in as: ${user?.displayName}');
+                        // Navigate to the next screen after successful authentication
+                      } catch (e) {
+                        print('Failed to sign in with Apple: $e');
+                        // Handle errors
+                      }
+                    },
+                    child: Container(
+                      height: 70,
+                      width: 90,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/Icons/AppleIcon.png")),
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
                     ),
                   ),
                   SizedBox(width: 30),
-                  Container(
-                    height: 70,
-                    width: 90,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/Icons/FacebookIcon.png")),
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(50),
+                  GestureDetector(
+                    onTap: () async {
+                      try {
+                        final UserCredential userCredential = await signInWithFacebook();
+                        final User? user = userCredential.user;
+                        print('Signed in as: ${user?.displayName}');
+                        // Navigate to the next screen after successful authentication
+                      } catch (e) {
+                        print('Failed to sign in with Facebook: $e');
+                        // Handle errors
+                      }
+
+                    },
+                    child: Container(
+                      height: 70,
+                      width: 90,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/Icons/FacebookIcon.png")),
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
                     ),
                   ),
                 ],
